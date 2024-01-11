@@ -8,9 +8,14 @@ use Rats\Zkteco\Lib\ZKTeco;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $zk = new ZKTeco('192.168.1.201');
+        $zk = new ZKTeco('192.168.18.68');
         if ($zk->connect()) {
             $device_name = $zk->deviceName();
             $device_serial_number = $zk->serialNumber();
@@ -32,7 +37,7 @@ class HomeController extends Controller
 
     public function testPerangkat()
     {
-        $zk = new ZKTeco('192.168.1.201');
+        $zk = new ZKTeco('192.168.18.68');
         if ($zk->connect()) {
             $zk->testVoice();
 

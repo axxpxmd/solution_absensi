@@ -13,9 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Auth
+Route::get('/login', 'AuthController@index')->name('auth.index')->middleware('guest');
+Route::post('/login', 'AuthController@login')->name('login')->middleware('guest');
+
+// Home
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/test-perangkat', 'HomeController@testPerangkat')->name('testPerangkat');
-Route::get('/data-user', 'UserController@index')->name('user.index');
+Route::group(['middleware' => ['auth']], function () {
+    Route::post('/logout', 'AuthController@logout')->name('logout');
 
-Route::get('/data-absen', 'AbsenController@index')->name('absen.index');
+    Route::get('/test-perangkat', 'HomeController@testPerangkat')->name('testPerangkat');
+
+    Route::get('/data-user', 'UserController@index')->name('user.index');
+    Route::post('/data-user/table', 'UserController@dataTable')->name('user.table');
+    Route::get('/data-user/get-data-user-from-device', 'UserController@getDataUserFromDevice')->name('user.getDataUserFromDevice');
+    Route::get('/data-user/create', 'UserController@create')->name('user.create');
+
+    Route::get('/data-absen', 'AbsenController@index')->name('absen.index');
+});

@@ -23,6 +23,11 @@
                     <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                         <img class="img-fluid mx-auto d-block rounded-circle img-circular" width="40" src="{{ asset('images/default.png') }}" alt="Foto Profil">
                     </a>
+                    <ul class="dropdown-menu  dropdown-menu-end px-2 py-2 me-sm-n4" style="margin-top: 30px !important; margin-right: -8px !important" aria-labelledby="dropdownMenuButton">
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item">
+                            <i class="fa-solid fa-right-from-bracket" style="margin-right: 10px !important"></i><span class="fw-bold fs-14">Log Out</span>
+                        </a>
+                    </ul>
                 </li>
             </ul>
         </div>

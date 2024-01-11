@@ -16,9 +16,9 @@
                             <th width="10%" class="px-0">Type</th>
                         </thead>
                         <tbody>
-                            @foreach ($datas as $key => $i)
+                            @foreach ($datas as $i)
                                 <tr>
-                                    <td class="text-center">{{ $key+1 }}</td>
+                                    <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $i['uid'] }}</td>
                                     <td>{{ $i['id'] }}</td>
                                     <td>{{ $i['state'] }}</td>

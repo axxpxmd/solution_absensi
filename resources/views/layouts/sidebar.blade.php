@@ -32,6 +32,15 @@
                     <span class="nav-link-text ms-1">Data Absen</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-arrow-right text-info text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Log Out</span>
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
+            </li>
         </ul>
     </div>
 </aside>
