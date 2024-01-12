@@ -5,6 +5,7 @@
     <div class="py-4">
         <a href="{{ route('user.create') }}" class="btn btn-sm btn-success m-r-10">Tambah User <i class="fa fa-plus m-l-8"></i></a>
         <a href="#" onclick="getDataUserFromDevice()" class="btn btn-sm btn-warning">Perbarui Data <i class="fa fa-rotate m-l-8"></i></a>
+        @include('layouts.alerts')
         <div class="card shadow">
             <div class="card-body">
                 <div class="table-responsive">
@@ -36,7 +37,7 @@
         serverSide: true,
         order: [ 0, 'asc' ],
         pageLength: 10,
-        searching: false,
+        searching: true,
         language: {
             paginate: {
                 next: '&#8594;', // or '→'
@@ -70,6 +71,34 @@
                 table.api().ajax.reload();
             }
         }, 'JSON');
+    }
+
+    function remove(uid){
+        $.confirm({
+            title: 'Konfirmasi',
+            content: 'Apakah Anda yakin ingin menghapus user ini ?',
+            icon: 'fa fa-question text-danger',
+            theme: 'modern',
+            closeIcon: true,
+            animation: 'scale',
+            type: 'red',
+            buttons: {
+                ok: {
+                    text: "ok!",
+                    btnClass: 'btn-success',
+                    keys: ['enter'],
+                    action: function(){
+                        $.post("{{ route('user.delete', ':id') }}".replace(':id', uid), {'_method' : 'DELETE'}, function(data) {
+                            table.api().ajax.reload();
+                            success(data.message)
+                        }, "JSON").fail(function(){
+                            reload();
+                        });
+                    }
+                },
+                cancel: function(){}
+            }
+        });
     }
 </script>
 @endpush

@@ -23,7 +23,6 @@ class UserController extends Controller
     {
         $zk = new ZKTeco('192.168.18.68');
         if ($zk->connect()) {
-            $zk->removeUser(5);
             $datas = $zk->getUser();
 
             $zk->enableDevice();
@@ -54,7 +53,9 @@ class UserController extends Controller
 
         return DataTables::of($data)
             ->addColumn('action', function ($p) {
-                //
+                $hapus  = "<a href='#' class='text-danger fs-16 m-r-15' title='Hapus Absen' onclick='remove(" . $p->uid . ")' ><i class='fa fa-times'></i></a>";
+
+                return $hapus;
             })
             ->addIndexColumn()
             ->rawColumns(['action'])
@@ -64,5 +65,57 @@ class UserController extends Controller
     public function create()
     {
         return view('pages.user.add');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'uid' => 'required|numeric',
+            'user_id' => 'required|numeric',
+            'name' => 'required|max:50',
+            'password' => 'required',
+            'role' => 'required'
+        ]);
+
+        $uid = $request->uid;
+        $userid = $request->user_id;
+        $name = $request->name;
+        $password = $request->password;
+        $role = $request->role;
+        $cardno = $request->card_no;
+
+        $zk = new ZKTeco('192.168.18.68');
+        if ($zk->connect()) {
+            $zk->setUser($uid, $userid, $name, $password, $role, $cardno);
+
+            $zk->enableDevice();
+        }
+        $zk->disconnect();
+
+        return redirect()
+            ->route('user.index')
+            ->withSuccess('Data berhasil ditambahkan');
+    }
+
+    public function delete($uid)
+    {
+        try {
+            // delete from device
+            $zk = new ZKTeco('192.168.18.68');
+            if ($zk->connect()) {
+                $zk->removeUser($uid);
+
+                $zk->enableDevice();
+            }
+
+            $zk->disconnect();
+
+            // delete from table
+            UserDevice::where('uid', $uid)->delete();
+
+            return response()->json(["message" => "Berhasil Hapus Absen"]);
+        } catch (\Throwable $th) {
+            return response()->json(["message" => "Gagal Hapus Absen"], 400);
+        }
     }
 }
