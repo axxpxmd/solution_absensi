@@ -59,6 +59,14 @@
         ]
     });
 
-
+    getDataAbsenFromDevice();
+    function getDataAbsenFromDevice(){
+        urlgetDataAbsenFromDevice = "{{ route('absen.getDataAbsenFromDevice') }}"
+        $.get(urlgetDataAbsenFromDevice, function(data){
+            if (data.status) {
+                table.api().ajax.reload();
+            }
+        }, 'JSON');
+    }
 </script>
 @endpush
