@@ -14,23 +14,23 @@
                     @csrf
                     <div class="form-group row">
                         <div class="col-sm-2">
-                            <label for="uid" class="col-form-label fs-13">UID</label>
+                            <label for="uid" class="col-form-label fs-13">UID<span class="text-danger">*</span></label>
                         </div>
                         <div class="col-sm-4">
-                            <input type="number" name="uid" id="uid" class="form-control" required>
+                            <input type="number" name="uid" id="uid" value="{{ $getLastId }}" readonly class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-2">
-                            <label for="user_id" class="col-form-label fs-13">User ID</label>
+                            <label for="user_id" class="col-form-label fs-13">User ID<span class="text-danger">*</span></label>
                         </div>
                         <div class="col-sm-4">
-                            <input type="number" name="user_id" id="user_id" class="form-control" required>
+                            <input type="number" name="user_id" id="user_id" value="{{ $getLastId }}" readonly class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-2">
-                            <label for="name" class="col-form-label fs-13">Nama</label>
+                            <label for="name" class="col-form-label fs-13">Nama<span class="text-danger">*</span></label>
                         </div>
                         <div class="col-sm-4">
                             <input type="text" name="name" id="name" class="form-control" required>
@@ -38,7 +38,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-2">
-                            <label for="password" class="col-form-label fs-13">Password</label>
+                            <label for="password" class="col-form-label fs-13">Password<span class="text-danger">*</span></label>
                         </div>
                         <div class="col-sm-4">
                             <input type="number" name="password" id="password" class="form-control" required>
@@ -46,7 +46,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-2">
-                            <label for="role" class="col-form-label fs-13">Role</label>
+                            <label for="role" class="col-form-label fs-13">Role<span class="text-danger">*</span></label>
                         </div>
                         <div class="col-sm-4">
                             <select name="role" id="role" class="form-select" required>

@@ -24,6 +24,7 @@ class UserController extends Controller
         $zk = new ZKTeco('192.168.62.23');
         if ($zk->connect()) {
             $datas = $zk->getUser();
+            // dd($datas);
 
             $zk->enableDevice();
         }
@@ -33,11 +34,27 @@ class UserController extends Controller
             UserDevice::updateOrCreate([
                 'uid' => $i['uid'],
                 'user_id' => $i['userid'],
-                'nama' => $i['name'],
+                'name' => $i['name'],
                 'role' => $i['role'],
                 'password' => $i['password'],
                 'card_no' => $i['cardno']
             ]);
+
+            $checkData = UserDevice::where('uid', $i['uid'])->get();
+
+            if (count($checkData) > 1) {
+                foreach ($checkData as $k) {
+                    // check if name not same
+                    if($k->name != $i['name']) {
+                        UserDevice::where('name', $k->name)->delete();
+                    }
+
+                    // check if role not same
+                    if($k->role != $i['role']) {
+                        UserDevice::where('role', $k->role)->delete();
+                    }
+                }
+            }
         }
 
         $zk->disconnect();
@@ -49,7 +66,7 @@ class UserController extends Controller
 
     public function dataTable()
     {
-        $data = UserDevice::select('id', 'uid', 'user_id', 'nama', 'role', 'password', 'card_no')->orderBy('id', 'DESC')->get();
+        $data = UserDevice::select('id', 'uid', 'user_id', 'name', 'role', 'password', 'card_no')->orderBy('id', 'DESC')->get();
 
         return DataTables::of($data)
             ->addColumn('action', function ($p) {
@@ -64,14 +81,16 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('pages.user.add');
+        $getLastId = UserDevice::count() + 1;
+
+        return view('pages.user.add', compact('getLastId'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'uid' => 'required|numeric',
-            'user_id' => 'required|numeric',
+            'uid' => 'required|numeric|unique:user_device,uid',
+            'user_id' => 'required|numeric|unique:user_device,user_id',
             'name' => 'required|max:50',
             'password' => 'required',
             'role' => 'required'

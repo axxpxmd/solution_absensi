@@ -57,7 +57,7 @@ class AbsenController extends Controller
                 return $hapus;
             })
             ->editColumn('user_id', function($p) {
-                return $p->userDevice->nama;
+                return $p->userDevice->name;
             })
             ->addIndexColumn()
             ->rawColumns(['action'])

@@ -11,10 +11,10 @@
                 <div class="table-responsive">
                     <table id="dataTable" class="table data-table display nowrap table-striped" style="width:100%">
                         <thead>
-                            <th width="10%" class="px-0 text-center">NO</th>
+                            {{-- <th width="10%" class="px-0 text-center">NO</th> --}}
                             <th width="10%" class="px-0">UID</th>
                             <th width="10%" class="px-0">User ID</th>
-                            <th width="30%" class="px-0">Name</th>
+                            <th width="40%" class="px-0">Name</th>
                             <th width="10%" class="px-0">Role</th>
                             <th width="10%" class="px-0">Password</th>
                             <th width="10%" class="px-0">Card No</th>
@@ -52,10 +52,10 @@
             }
         },
         columns: [
-            {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false, align: 'center', className: 'text-center align-middle'},
+            // {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false, align: 'center', className: 'text-center align-middle'},
             {data: 'uid', name: 'uid', className: 'align-middle'},
             {data: 'user_id', name: 'user_id', className: 'align-middle'},
-            {data: 'nama', name: 'nama', className: 'align-middle'},
+            {data: 'name', name: 'name', className: 'align-middle'},
             {data: 'role', name: 'role', className: 'align-middle'},
             {data: 'password', name: 'password', className: 'align-middle'},
             {data: 'card_no', name: 'card_no', className: 'align-middle'},
@@ -76,7 +76,7 @@
     function remove(uid){
         $.confirm({
             title: 'Konfirmasi',
-            content: 'Apakah Anda yakin ingin menghapus user ini ?',
+            content: 'Menghapus disini juga akan menghapus data yang ada pada device, apakah anda yakin ?',
             icon: 'fa fa-question text-danger',
             theme: 'modern',
             closeIcon: true,
