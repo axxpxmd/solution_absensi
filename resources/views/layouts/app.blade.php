@@ -33,7 +33,7 @@
 
 </head>
 <body class="g-sidenav-show" style=" background-image: url('https://app.midtrans.com/payment-links/assets/bg.jpg');">
-    <div class="min-height-400 position-absolute w-100" style="background: #4C92FA"></div>
+    <div class="min-height-400 position-absolute w-100" style="background: #FEBD01"></div>
     <!-- Navigation -->
     @include('layouts.sidebar')
     <main class="main-content position-relative border-radius-lg">

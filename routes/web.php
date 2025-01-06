@@ -35,5 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/data-absen', 'AbsenController@index')->name('absen.index');
     Route::post('/data-absen/table', 'AbsenController@dataTable')->name('absen.table');
-    Route::get('/data-abse/get-data-absen-from-device', 'AbsenController@getDataAbsenFromDevice')->name('absen.getDataAbsenFromDevice');
+    Route::get('/data-absen/get-data-absen-from-device', 'AbsenController@getDataAbsenFromDevice')->name('absen.getDataAbsenFromDevice');
+
+    Route::get('/data-kegiatan', 'KegiatanController@index')->name('kegiatan.index');
 });

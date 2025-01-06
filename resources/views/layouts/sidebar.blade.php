@@ -1,6 +1,6 @@
 <aside class="sidenav bg-white shadow navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header text-center p-4">
-        <p class="font-weight-bolder fs-20 text-black mb-n5">SOLUTION</p>
+        <p class="font-weight-bolder fs-20 text-black mb-n5">ABSENSI</p>
     </div>
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
@@ -31,6 +31,26 @@
                     </div>
                     <span class="nav-link-text ms-1">Data Absen</span>
                 </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::segment(1) == 'data-absen' ? 'active' : '' }}" href="{{ route('absen.index') }}">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-calendar text-success text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Kegiatan</span>
+                </a>
+            </li>
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Lainnya</h6>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-gear text-danger text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Config Perangkat</span>
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
             </li>
             <li class="nav-item">
                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">

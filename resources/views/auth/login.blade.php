@@ -50,7 +50,7 @@
                     <button type="submit" class="rounded">Masuk</button>
                 </div>
             </form>
-            <p class="text-center text-black-50 fw-bold fs-14 mt-2">SOLUTION © {{ date('Y') }}</p>
+            <p class="text-center text-black-50 fw-bold fs-14 mt-2">SOLUTION X100-C © {{ date('Y') }}</p>
             <img src="{{ asset('assetLogin/images/image3.png') }}" alt="" class="image-2" style="margin-right: -100px !important; margin-bottom: -5px !important" width="300">
         </div>
     </div>

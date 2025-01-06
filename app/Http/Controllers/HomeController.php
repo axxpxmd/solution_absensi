@@ -15,7 +15,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $zk = new ZKTeco('192.168.18.68');
+        $zk = new ZKTeco('192.168.62.23');
         if ($zk->connect()) {
             $device_name = $zk->deviceName();
             $device_serial_number = $zk->serialNumber();
@@ -25,9 +25,10 @@ class HomeController extends Controller
             $zk->enableDevice();
         } else {
             $status_device = false;
+            $device_name = '-';
+            $device_serial_number = '-';
         }
 
-        $zk->disconnect();
         return view('welcome', compact(
             'device_name',
             'status_device',
@@ -37,7 +38,7 @@ class HomeController extends Controller
 
     public function testPerangkat()
     {
-        $zk = new ZKTeco('192.168.18.68');
+        $zk = new ZKTeco('192.168.62.23');
         if ($zk->connect()) {
             $zk->testVoice();
 

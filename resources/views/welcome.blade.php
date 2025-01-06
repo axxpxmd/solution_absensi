@@ -57,13 +57,13 @@
             <div class="card">
                 <div class="card-body p-3">
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-9">
                             <div class="numbers">
                                 <p class="font-weight-bold text-black fs-15">NOMOR SERI PERANGKAT</p>
                                 <p class="text-black font-weight-bold fs-14">{{ $device_serial_number }}</p>
                             </div>
                         </div>
-                        <div class="col-4 text-end">
+                        <div class="col-3 text-end">
                             <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
                                 <i class="fa fa-clock fs-20 opacity-10" aria-hidden="true"></i>
                             </div>
@@ -79,7 +79,7 @@
                         <div class="col-8">
                         <div class="numbers">
                                 <p class="font-weight-bold text-black fs-15">TEST PERANGKAT</p>
-                                <a href="#" onclick="testPerangkat()" class="btn btn-sm btn-warning mb-1">HIT ME!</a>
+                                <a href="#" onclick="testPerangkat()" class="btn btn-sm btn-primary mb-1">HIT ME!</a>
                             </div>
                         </div>
                         <div class="col-4 text-end">

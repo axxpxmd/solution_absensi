@@ -21,7 +21,7 @@ class AbsenController extends Controller
 
     public function getDataAbsenFromDevice()
     {
-        $zk = new ZKTeco('192.168.18.68');
+        $zk = new ZKTeco('192.168.62.23');
         if ($zk->connect()) {
             $datas = $zk->getAttendance();
 

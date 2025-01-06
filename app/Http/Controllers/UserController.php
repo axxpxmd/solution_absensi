@@ -21,7 +21,7 @@ class UserController extends Controller
 
     public function getDataUserFromDevice()
     {
-        $zk = new ZKTeco('192.168.18.68');
+        $zk = new ZKTeco('192.168.62.23');
         if ($zk->connect()) {
             $datas = $zk->getUser();
 
@@ -84,7 +84,7 @@ class UserController extends Controller
         $role = $request->role;
         $cardno = $request->card_no;
 
-        $zk = new ZKTeco('192.168.18.68');
+        $zk = new ZKTeco('192.168.62.23');
         if ($zk->connect()) {
             $zk->setUser($uid, $userid, $name, $password, $role, $cardno);
 
@@ -101,7 +101,7 @@ class UserController extends Controller
     {
         try {
             // delete from device
-            $zk = new ZKTeco('192.168.18.68');
+            $zk = new ZKTeco('192.168.62.23');
             if ($zk->connect()) {
                 $zk->removeUser($uid);
 
