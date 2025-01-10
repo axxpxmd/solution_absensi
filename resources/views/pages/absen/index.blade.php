@@ -9,10 +9,10 @@
                 <div class="table-responsive">
                     <table id="dataTable" class="table data-table display nowrap table-striped" style="width:100%">
                         <thead>
-                            <th width="10%" class="px-0 text-center">NO</th>
+                            {{-- <th width="10%" class="px-0 text-center">NO</th> --}}
                             <th width="10%" class="px-0">UID</th>
-                            <th width="10%" class="px-0">User ID</th>
-                            <th width="30%" class="px-0">State</th>
+                            <th width="40%" class="px-0">Name</th>
+                            <th width="10%" class="px-0">State</th>
                             <th width="10%" class="px-0">Timestamps</th>
                             <th width="10%" class="px-0">Type</th>
                             <th width="10%" class="px-0">Action</th>
@@ -49,7 +49,7 @@
             }
         },
         columns: [
-            {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false, align: 'center', className: 'text-center align-middle'},
+            // {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false, align: 'center', className: 'text-center align-middle'},
             {data: 'uid', name: 'uid', className: 'align-middle'},
             {data: 'user_id', name: 'user_id', className: 'align-middle'},
             {data: 'state', name: 'state', className: 'align-middle'},

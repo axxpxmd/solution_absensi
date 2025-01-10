@@ -23,9 +23,9 @@
             <form method="POST" action="{{ route('login') }}" class="needs-validation" style="border-radius: 20px" novalidate>
                 @csrf
                 <div class="text-center" style="margin-top: -40px !important;">
-                    <img src="{{ asset('images/ontime.png') }}" class="img-fluid mb-2" width="110" alt="">
+                    <img src="https://dataawan.tangerangselatankota.go.id/presensi/file-config/1654833732.png" class="img-fluid mb-2" width="110" alt="">
                     <p class="fw-bold fs-25 text-white">Selamat Datang</p>
-                    <p class="text-white mt-2">Sistem Presensi Solution</p>
+                    <p class="text-white mt-2">Sistem Presensi Pegawai</p>
                 </div>
                 <div class="mt-4">
                     <div class="form-holder">

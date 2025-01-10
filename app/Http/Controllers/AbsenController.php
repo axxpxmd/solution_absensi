@@ -21,7 +21,7 @@ class AbsenController extends Controller
 
     public function getDataAbsenFromDevice()
     {
-        $zk = new ZKTeco('192.168.62.23');
+        $zk = new ZKTeco('192.168.62.230');
         if ($zk->connect()) {
             $datas = $zk->getAttendance();
 
@@ -58,6 +58,15 @@ class AbsenController extends Controller
             })
             ->editColumn('user_id', function($p) {
                 return $p->userDevice->name;
+            })
+            ->editColumn('state', function($p) {
+                if ($p->state == 1) {
+                    return 'Finger Print';
+                } elseif($p->state == 0) {
+                    return 'Password';
+                }else{
+                    return '-';
+                }
             })
             ->addIndexColumn()
             ->rawColumns(['action'])

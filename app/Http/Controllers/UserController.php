@@ -21,7 +21,7 @@ class UserController extends Controller
 
     public function getDataUserFromDevice()
     {
-        $zk = new ZKTeco('192.168.62.23');
+        $zk = new ZKTeco('192.168.62.230');
         if ($zk->connect()) {
             $datas = $zk->getUser();
             // dd($datas);
@@ -45,12 +45,12 @@ class UserController extends Controller
             if (count($checkData) > 1) {
                 foreach ($checkData as $k) {
                     // check if name not same
-                    if($k->name != $i['name']) {
+                    if ($k->name != $i['name']) {
                         UserDevice::where('name', $k->name)->delete();
                     }
 
                     // check if role not same
-                    if($k->role != $i['role']) {
+                    if ($k->role != $i['role']) {
                         UserDevice::where('role', $k->role)->delete();
                     }
                 }
@@ -73,6 +73,15 @@ class UserController extends Controller
                 $hapus  = "<a href='#' class='text-danger fs-16 m-r-15' title='Hapus Absen' onclick='remove(" . $p->uid . ")' ><i class='fa fa-times'></i></a>";
 
                 return $hapus;
+            })
+            ->editColumn('role', function ($p) {
+                if ($p->role == 14) {
+                    return 'Super-Admin';
+                } elseif ($p->role == 0) {
+                    return 'User-Biasa';
+                } else {
+                    return '-';
+                }
             })
             ->addIndexColumn()
             ->rawColumns(['action'])
@@ -103,7 +112,7 @@ class UserController extends Controller
         $role = $request->role;
         $cardno = $request->card_no;
 
-        $zk = new ZKTeco('192.168.62.23');
+        $zk = new ZKTeco('192.168.62.230');
         if ($zk->connect()) {
             $zk->setUser($uid, $userid, $name, $password, $role, $cardno);
 
@@ -120,7 +129,7 @@ class UserController extends Controller
     {
         try {
             // delete from device
-            $zk = new ZKTeco('192.168.62.23');
+            $zk = new ZKTeco('192.168.62.230');
             if ($zk->connect()) {
                 $zk->removeUser($uid);
 
