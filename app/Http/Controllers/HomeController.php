@@ -15,7 +15,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $zk = new ZKTeco('192.168.62.230');
+        $zk = new ZKTeco('192.168.63.196');
         if ($zk->connect()) {
             $device_name = $zk->deviceName();
             $device_serial_number = $zk->serialNumber();
@@ -38,7 +38,7 @@ class HomeController extends Controller
 
     public function testPerangkat()
     {
-        $zk = new ZKTeco('192.168.62.230');
+        $zk = new ZKTeco('192.168.63.196');
         if ($zk->connect()) {
             $zk->testVoice();
 

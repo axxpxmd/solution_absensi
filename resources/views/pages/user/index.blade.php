@@ -14,10 +14,10 @@
                             {{-- <th width="10%" class="px-0 text-center">NO</th> --}}
                             <th width="10%" class="px-0">UID</th>
                             <th width="10%" class="px-0">User ID</th>
-                            <th width="40%" class="px-0">Name</th>
+                            <th width="50%" class="px-0">Name</th>
                             <th width="10%" class="px-0">Role</th>
                             <th width="10%" class="px-0">Password</th>
-                            <th width="10%" class="px-0">Card No</th>
+                            {{-- <th width="10%" class="px-0">Card No</th> --}}
                             <th width="10%" class="px-0">Action</th>
                         </thead>
                         <tbody></tbody>
@@ -58,7 +58,7 @@
             {data: 'name', name: 'name', className: 'align-middle'},
             {data: 'role', name: 'role', className: 'align-middle'},
             {data: 'password', name: 'password', className: 'align-middle'},
-            {data: 'card_no', name: 'card_no', className: 'align-middle'},
+            // {data: 'card_no', name: 'card_no', className: 'align-middle'},
             {data: 'action', name: 'action', orderable: false, searchable: false, className: 'text-center align-middle'},
         ]
     });
