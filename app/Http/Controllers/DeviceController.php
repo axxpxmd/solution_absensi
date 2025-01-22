@@ -28,6 +28,7 @@ class DeviceController extends Controller
 
     public function store(Request $request)
     {
+        dd('store');
         $request->validate([
             'ip' => 'required|unique:device,ip',
             'ket' => 'required'

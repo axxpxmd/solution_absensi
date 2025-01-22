@@ -2,54 +2,42 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\Fingerprint;
 use App\Models\Device;
 use Illuminate\Http\Request;
-
 use Rats\Zkteco\Lib\ZKTeco;
 
 class HomeController extends Controller
 {
-    public function __construct()
+    protected $fingerprint;
+
+    public function __construct(Fingerprint $fingerprint)
     {
+        $this->fingerprint = $fingerprint;
+
         $this->middleware('auth');
     }
 
     public function index(Request $request)
     {
-        $zk = new ZKTeco('192.168.63.196');
-        if ($zk->connect()) {
-            $device_name = $zk->deviceName();
-            $device_serial_number = $zk->serialNumber();
-
-            $status_device = true;
-
-            $zk->enableDevice();
-        } else {
-            $status_device = false;
-            $device_name = '-';
-            $device_serial_number = '-';
-        }
-
-        $devices = Device::all();
+        $devices = $this->fingerprint->checkConnection();
 
         return view('welcome', compact(
-            'device_name',
-            'status_device',
-            'device_serial_number',
             'devices'
         ));
     }
 
-    public function testPerangkat()
+    public function hitMe($id)
     {
-        $zk = new ZKTeco('192.168.63.196');
+        $device = Device::find($id);
+
+        $zk = new ZKTeco($device->ip);
         if ($zk->connect()) {
             $zk->testVoice();
 
             $zk->enableDevice();
         }
         $zk->disconnect();
-
 
         return ['message' => 'berhasil'];
     }

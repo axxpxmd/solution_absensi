@@ -12,9 +12,9 @@ class AbsenController extends Controller
     public function index(Request $request)
     {
         // If the request is an AJAX request, retrieve the attendance data from the device.
-        if ($request->ajax()) {
+        // if ($request->ajax()) {
             $this->getDataAbsenFromDevice();
-        }
+        // }
 
         return view('pages.absen.index');
     }
@@ -33,6 +33,7 @@ class AbsenController extends Controller
         $zk = new ZKTeco('192.168.63.196');
         if ($zk->connect()) {
             $datas = $zk->getAttendance();
+            dd($datas);
             $zk->enableDevice();
 
             foreach ($datas as $data) {

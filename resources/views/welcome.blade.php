@@ -1,102 +1,52 @@
 @extends('layouts.app')
 @section('title', '| DASHBOARD')
 @section('content')
-<div class="container-fluid py-4">
-    <div class="card">
-        <div class="card-body p-3">
-            <div class="text-center">
-                <p class="font-weight-bold fs-25 text-black mb-0">SELAMAT DATANG</p>
-                <p class="fs-18 text-black">SOLUTION X100-c</p>
-            </div>
-        </div>
-    </div>
-    <div class="row my-4 justify-content-center">
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <select class="form-control select2 bg-white" name="device_id" id="device_id">
-                @foreach ($devices as $key => $i)
-                    <option value="{{ $i->id }}" {{ $key == 0 ? "selected" : "-" }}>{{ $i->ip }}</option>
-                @endforeach
-            </select>
-        </div>
-    </div>
-    <div class="row my-4">
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-body p-3">
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="numbers">
-                                <p class="font-weight-bold text-black fs-15">STATUS PERANGKAT</p>
-                                @if ($status_device)
-                                    <p class="text-success font-weight-bold fs-14">TERHUBUNG</p>
-                                @else
-                                    <p class="text-danger font-weight-bold fs-18">Terputus</p>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-4 text-end">
-                            <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
-                                <i class="fa fa-signal" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card">
-                <div class="card-body p-3">
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="numbers">
-                                <p class="font-weight-bold text-black fs-15">NAMA PERANGKAT</p>
-                                <p class="text-black font-weight-bold fs-14">{{ $device_name }}</p>
-                            </div>
-                        </div>
-                        <div class="col-4 text-end">
-                            <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                                <i class="fa fa-display" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card">
-                <div class="card-body p-3">
-                    <div class="row">
-                        <div class="col-9">
-                            <div class="numbers">
-                                <p class="font-weight-bold text-black fs-15">NOMOR SERI PERANGKAT</p>
-                                <p class="text-black font-weight-bold fs-14">{{ $device_serial_number }}</p>
-                            </div>
-                        </div>
-                        <div class="col-3 text-end">
-                            <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
-                                <i class="fa fa-clock fs-20 opacity-10" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card">
-                <div class="card-body p-3">
-                    <div class="row">
-                        <div class="col-8">
-                        <div class="numbers">
-                                <p class="font-weight-bold text-black fs-15">TEST PERANGKAT</p>
-                                <a href="#" onclick="testPerangkat()" class="btn btn-sm btn-primary mb-1">HIT ME!</a>
-                            </div>
-                        </div>
-                        <div class="col-4 text-end">
-                            <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
-                                <i class="fa fa-check fs-20 opacity-10" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                    </div>
+                <h6 class="card-header bg-success text-white font-weight-bold px-4 fs-14" style="border-top-right-radius: 15px; border-top-left-radius: 15px; padding-top: 13px; padding-bottom: 13px">Status Devices<i class="fas fa-microchip m-l-10"></i></h6>
+                <div class="card-body pt-0 pb-4">
+                    <table id="tableChannelBayar" class="table table-hover fs-12" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>IP</th>
+                                <th>device Time</th>
+                                <th>device Name</th>
+                                <th>serial Number</th>
+                                <th>Keterangan</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($devices as $index => $i)
+                                <tr>
+                                    <td>{{ $index+1 }}</td>
+                                    <td>{{ $i['ip'] }}</td>
+                                    <td>{{ $i['deviceTime'] }}</td>
+                                    <td>{{ $i['deviceName'] }}</td>
+                                    <td>{{ $i['serialNumber'] }}</td>
+                                    <td>{{ $i['ket'] }}</td>
+                                    <td>
+                                        @if ($i['status'] == true)
+                                            <span class="badge bg-success">Online</span>
+                                        @else
+                                            <span class="badge bg-danger">Offline</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($i['status'] == true)
+                                            <a href="#" onclick="testPerangkat({{ $i['id'] }})">
+                                                <span class="badge bg-danger">Hit Me!</span>
+                                            </a>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -105,11 +55,23 @@
 @endsection
 @push('scripts')
 <script type="text/javascript">
-    function testPerangkat(){
-        urlGetTotalAbsen =  "{{ route('testPerangkat') }}"
-        $.get(urlGetTotalAbsen, function(data){
+    function testPerangkat(id){
+        url =  "{{ route('hitMe', ':id') }}".replace(':id', id);
+        $.get(url, function(data){
             console.log(data.message)
         }, 'JSON');
     }
+
+    $(document).ready(function () {
+        $('#tableChannelBayar').DataTable({
+            "scrollX": true,
+            // "scrollY": 50,
+            "bPaginate": false,
+            "bInfo": false,
+            "searching": false,
+            "order": [[1, 'desc']],
+        });
+        $('.dataTables_length').addClass('bs-select');
+    });
 </script>
 @endpush

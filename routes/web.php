@@ -24,7 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth']], function () {
     Route::post('/logout', 'AuthController@logout')->name('logout');
 
-    Route::get('/test-perangkat', 'HomeController@testPerangkat')->name('testPerangkat');
+    Route::get('/hit-me/{id}', 'HomeController@hitMe')->name('hitMe');
 
     Route::get('/data-user', 'UserController@index')->name('user.index');
     Route::post('/data-user/table', 'UserController@dataTable')->name('user.table');
@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/data-kegiatan', 'KegiatanController@index')->name('kegiatan.index');
 
+    // Perangkat
     Route::resource('/perangkat', 'DeviceController');
     Route::post('/perangkat/table', 'DeviceController@dataTable')->name('perangkat.table');
 });
