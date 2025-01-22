@@ -9,9 +9,13 @@ use App\Models\AbsenDevice;
 
 class AbsenController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $this->getDataAbsenFromDevice();
+        // If the request is an AJAX request, retrieve the attendance data from the device.
+        if ($request->ajax()) {
+            $this->getDataAbsenFromDevice();
+        }
+
         return view('pages.absen.index');
     }
 

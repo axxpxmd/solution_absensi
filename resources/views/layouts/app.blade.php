@@ -37,7 +37,7 @@
     <!-- Navigation -->
     @include('layouts.sidebar')
     <main class="main-content position-relative border-radius-lg">
-        <div class="alert alert-warning text-center position-absolute fw-bold fs-12 p-2" style="z-index: 9999999; left: 42%; margin-top: 20px; display: none" id="loading">Harap Tunggu</div>
+        <div class="alert alert-warning text-center position-absolute fw-bold fs-12 p-2" style="z-index: 9999999; left: 42%; margin-top: 20px; display: none" id="loading">Harap Tunggu ...</div>
         <!-- Header -->
         @include('layouts.header')
         <!-- Content -->
@@ -66,6 +66,14 @@
         Fancybox.bind("[data-fancybox]", {
         // Your custom options
         });
+
+        $( document ).on( "ajaxStart", function() {
+            $('#loading').show();
+        } );
+
+        $( document ).on( "ajaxStop", function() {
+            $('#loading').hide();
+        } );
     </script>
     @yield('scripts')
     @stack('scripts')

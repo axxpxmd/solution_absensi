@@ -10,6 +10,15 @@
             </div>
         </div>
     </div>
+    <div class="row my-4 justify-content-center">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <select class="form-control select2 bg-white" name="device_id" id="device_id">
+                @foreach ($devices as $key => $i)
+                    <option value="{{ $i->id }}" {{ $key == 0 ? "selected" : "-" }}>{{ $i->ip }}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
     <div class="row my-4">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
             <div class="card">

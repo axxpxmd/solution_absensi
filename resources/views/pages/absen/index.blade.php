@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid mt-3" >
     <div class="py-4">
-        <a href="#" onclick="getDataAbsenFromDevice()" class="btn btn-sm btn-warning">Perbarui Data <i class="fa fa-rotate m-l-8"></i></a>
+        <a href="#" onclick="getDataAbsenFromDevice()" class="btn btn-sm btn-warning">Tarik Data <i class="fa fa-rotate m-l-8"></i></a>
         <div class="card shadow">
             <div class="card-body">
                 <div class="row">
@@ -81,7 +81,6 @@
         ]
     });
 
-    getDataAbsenFromDevice();
     function getDataAbsenFromDevice(){
         urlgetDataAbsenFromDevice = "{{ route('absen.getDataAbsenFromDevice') }}"
         $.get(urlgetDataAbsenFromDevice, function(data){

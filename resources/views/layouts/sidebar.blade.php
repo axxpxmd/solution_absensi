@@ -36,13 +36,12 @@
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Lainnya</h6>
             </li>
             <li class="nav-item">
-                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
+                <a class="nav-link {{ Request::segment(1) == 'perangkat' ? 'active' : '' }}" href="{{ route('perangkat.index') }}">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-gear text-danger text-sm opacity-10"></i>
+                        <i class="fas fa-microchip text-primary text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Config Perangkat</span>
+                    <span class="nav-link-text ms-1">Perangkat</span>
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
             </li>
             <li class="nav-item">
                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">

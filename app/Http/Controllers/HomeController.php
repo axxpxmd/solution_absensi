@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Device;
 use Illuminate\Http\Request;
 
 use Rats\Zkteco\Lib\ZKTeco;
@@ -13,7 +14,7 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $zk = new ZKTeco('192.168.63.196');
         if ($zk->connect()) {
@@ -29,10 +30,13 @@ class HomeController extends Controller
             $device_serial_number = '-';
         }
 
+        $devices = Device::all();
+
         return view('welcome', compact(
             'device_name',
             'status_device',
-            'device_serial_number'
+            'device_serial_number',
+            'devices'
         ));
     }
 
